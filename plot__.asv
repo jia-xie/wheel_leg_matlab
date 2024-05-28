@@ -1,0 +1,21 @@
+time = out.simout.time;
+
+velocity = out.simout.signals.values;
+figure(1)
+plot(time, velocity(:, 1), "LineWidth", 1.5)
+hold on
+grid on 
+plot(time, velocity(:, 2))
+xlabel("time (s)");
+ylabel("Velocity (m/s)");
+title("Velocity Response")
+
+figure(2)
+theta = out.simout1.signals.;
+plot(time, theta(:, 1))
+hold on
+grid on 
+plot(time, theta(:, 2))
+xlabel("time (s)");
+ylabel("Body Angle (deg)");
+title("Body Angle Response")

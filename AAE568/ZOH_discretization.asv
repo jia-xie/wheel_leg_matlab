@@ -1,0 +1,98 @@
+%% Discretization
+% Define the continuous-time system matrices
+load("../state_space.mat")
+C = eye(size(A));  % Identity matrix sized to A, assuming full state output
+D = zeros(size(B, 1), size(B, 2));  % Zero matrix sized to B
+
+% Specify the sampling time
+Ts = 0.1;  % Sampling time in seconds, change this to your specific value
+
+% Create a continuous-time state-space system
+sys = ss(A, B, C, D);
+
+% Convert the continuous-time system to a discrete-time system using ZOH
+sysd = c2d(sys, Ts, 'zoh');
+
+% Extract the discrete-time A and B matrices
+Ad = sysd.A;
+Bd = sysd.B;
+
+% Display the discrete-time matrices
+disp('Discrete-time A matrix:');
+disp(Ad);
+disp('Discrete-time B matrix:');
+disp(Bd);
+
+% System matrices
+A = Ad; % Your A matrix
+B = Bd; % Your B matrix
+
+% Horizon
+N = 5; % Prediction horizon
+
+% Pre-allocate H and G matrices
+H = zeros(N*size(A,1), size(A,1));
+G = zeros(N*size(A,1), N*size(B,2));
+
+% Construct H matrix
+for i = 1:N
+    H((i-1)*size(A,1)+1:i*size(A,1), :) = A^i;
+end
+
+% Construct G matrix
+for i = 1:N
+    for j = 1:i
+        G((i-1)*size(A,1)+1:i*size(A,1), (j-1)*size(B,2)+1:j*size(B,2)) = A^(i-j)*B;
+    end
+end
+
+% Display H and G
+disp('H matrix:');
+disp(H);
+disp('G matrix:');
+disp(G);
+
+%% Unconstrained MPC
+% Initial Condition
+x0 = [0, 0, 0.2, 0, 0, 0]';
+
+% System matrices
+Q = eye(6); % State weighting matrix
+R = eye(2); % Input weighting matrix
+P = eye(6); % Terminal state weighting matrix
+
+% Construct Qbar
+Qbar = blkdiag(kron(eye(N-1), Q), P);
+
+% Construct Rbar
+Rbar = kron(eye(N), R);
+
+% Display Qbar and Rbar
+disp('Qbar matrix:');
+disp(Qbar);
+disp('Rbar matrix:');
+disp(Rbar);
+
+% Compute the augmented matrices for the cost function
+M = Q + H'*Qbar*H;
+F = G'*Qbar*H;
+L = G'*Qbar*G + Rbar;
+
+% Calculate the optimal control input U over the horizon
+% The quadratic cost function J_N(U) is minimized when the derivative with respect to U is zero.
+% This leads to the linear equation LU = -F'x, which can be solved for U since L is positive definite.
+
+Ustart = -inv(L)*F*x0;
+
+-0.0021,-0.0686,2.1067,0.3779,0.6202,0.1196
+   -0.0007   -0.0216   -0.6232,0.0556,1.3173,0.1221
+% Simulate the system
+x = x0; % Initialize state
+for k = 1:N
+    % Apply control input to the system
+    x = A*x + B*Ustart((k-1)*size(B,2)+(1:size(B,2)));
+end
+
+% Display the final state
+disp('Final state:');
+disp(x);

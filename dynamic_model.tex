@@ -1,0 +1,338 @@
+% This LaTeX was auto-generated from MATLAB code.
+% To make changes, update the MATLAB code and export to LaTeX again.
+
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{epstopdf}
+\usepackage[table]{xcolor}
+\usepackage{matlab}
+\usepackage[paperheight=795pt,paperwidth=614pt,top=72pt,bottom=72pt,right=72pt,left=72pt,heightrounded]{geometry}
+
+\sloppy
+\epstopdfsetup{outdir=./}
+\graphicspath{ {./dynamic_model_media/} }
+
+\begin{document}
+
+\begin{matlabcode}
+syms F_wx_1 F_wz_1 F_wx_2 F_wz_2
+syms F_bx_1 F_bz_1 F_bx_2 F_bz_2
+syms f1 f2
+
+syms T_w_1 T_w_2 T_h_1 T_h_2 
+
+syms x_ddot_l_1 z_ddot_l_1 x_ddot_l_2 z_ddot_l_2 x_ddot_b z_ddot_b
+
+syms phi_ddot  theta_b theta_l_1 theta_l_2 theta_ddot_l_1 theta_ddot_l_2
+syms theta_ddot_w_1 theta_ddot_w_2 theta_ddot_b
+syms g I_z I_w I_l_1 I_l_2 I_b m_w m_l m_b l_b_1 l_w_1 l_b_2 l_w_2 R_l R_w l_c
+
+
+
+% Equations
+eq1 = I_z*phi_ddot == (-f1 + f2)*R_l
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+eq1 = 
+
+\hskip1em $\displaystyle I_z \,\ddot{\phi} =-R_l \,{\left(f_1 -f_2 \right)}$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+eq2 = F_bz_1 == F_bz_2
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+eq2 = 
+
+\hskip1em $\displaystyle F_{\textrm{bz},1} =F_{\textrm{bz},2} $
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+eq3 = m_w*R_w*theta_ddot_w_1 == f1 - F_wx_1
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+eq3 = 
+
+\hskip1em $\displaystyle R_w \,m_w \,{\ddot{\theta} }_{w,1} =f_1 -F_{\textrm{wx},1} $
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+eq4 = I_w*theta_ddot_w_1 == T_w_1 - R_w*f1
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+eq4 = 
+
+\hskip1em $\displaystyle I_w \,{\ddot{\theta} }_{w,1} =T_{w,1} -R_w \,f_1 $
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+eq5 = m_l*x_ddot_l_1 == F_wx_1 - F_bx_1
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+eq5 = 
+
+\hskip1em $\displaystyle m_l \,{\ddot{x} }_{l,1} =F_{\textrm{wx},1} -F_{\textrm{bx},1} $
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+eq6 = m_l * z_ddot_l_1 == F_wz_1 - F_bz_1 - m_l * g
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+eq6 = 
+
+\hskip1em $\displaystyle m_l \,{\ddot{z} }_{l,1} =F_{\textrm{wz},1} -F_{\textrm{bz},1} -g\,m_l $
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+eq7 = I_l_1*theta_ddot_l_1 == (-F_bx_1*l_b_1 + F_wx_1*l_w_1)*cos(theta_l_1) + (F_bz_1*l_b_1 + F_wz_1*l_w_1)*sin(theta_l_1) - T_w_1 + T_h_1
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+eq7 = 
+
+\hskip1em $\displaystyle I_{l,1} \,{\ddot{\theta} }_{l,1} =T_{h,1} -T_{w,1} -\cos \left(\theta_{l,1} \right)\,{\left(F_{\textrm{bx},1} \,l_{b,1} -F_{\textrm{wx},1} \,l_{w,1} \right)}+\sin \left(\theta_{l,1} \right)\,{\left(F_{\textrm{bz},1} \,l_{b,1} +F_{\textrm{wz},1} \,l_{w,1} \right)}$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+eq8 = m_w*R_w*theta_ddot_w_2 == f2 - F_wx_2
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+eq8 = 
+
+\hskip1em $\displaystyle R_w \,m_w \,{\ddot{\theta} }_{w,2} =f_2 -F_{\textrm{wx},2} $
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+eq9 = I_w*theta_ddot_w_2 == T_w_2 - R_w*f2
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+eq9 = 
+
+\hskip1em $\displaystyle I_w \,{\ddot{\theta} }_{w,2} =T_{w,2} -R_w \,f_2 $
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+eq10 = m_l*x_ddot_l_2 == F_wx_2 - F_bx_2
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+eq10 = 
+
+\hskip1em $\displaystyle m_l \,{\ddot{x} }_{l,2} =F_{\textrm{wx},2} -F_{\textrm{bx},2} $
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+eq11 = m_l * z_ddot_l_2 == F_wz_2 - F_bz_2 - m_l * g
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+eq11 = 
+
+\hskip1em $\displaystyle m_l \,{\ddot{z} }_{l,2} =F_{\textrm{wz},2} -F_{\textrm{bz},2} -g\,m_l $
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+eq12 = I_l_1*theta_ddot_l_2 == (-F_bx_2*l_b_2 + F_wx_2*l_w_2)*cos(theta_l_2) + (F_bz_2*l_b_2 + F_wz_2*l_w_2)*sin(theta_l_2) - T_w_2 + T_h_2
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+eq12 = 
+
+\hskip1em $\displaystyle I_{l,1} \,{\ddot{\theta} }_{l,2} =T_{h,2} -T_{w,2} -\cos \left(\theta_{l,2} \right)\,{\left(F_{\textrm{bx},2} \,l_{b,2} -F_{\textrm{wx},2} \,l_{w,2} \right)}+\sin \left(\theta_{l,2} \right)\,{\left(F_{\textrm{bz},2} \,l_{b,2} +F_{\textrm{wz},2} \,l_{w,2} \right)}$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+eq13 = m_b*x_ddot_b == F_bx_1 + F_bx_2
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+eq13 = 
+
+\hskip1em $\displaystyle m_b \,{\ddot{x} }_b =F_{\textrm{bx},1} +F_{\textrm{bx},2} $
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+eq14 = m_b*z_ddot_b == F_bz_1 + F_bz_2 - m_b*g
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+eq14 = 
+
+\hskip1em $\displaystyle m_b \,{\ddot{z} }_b =F_{\textrm{bz},1} +F_{\textrm{bz},2} -g\,m_b $
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+eq15 = I_b*theta_ddot_b == (-F_bx_1 + F_bx_2)*l_c*cos(theta_b) + (F_bz_1 + F_bz_2)*l_c*sin(theta_b) - T_h_1 - T_h_2
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+eq15 = 
+
+\hskip1em $\displaystyle I_b \,{\ddot{\theta} }_b =l_c \,\sin \left(\theta_b \right)\,{\left(F_{\textrm{bz},1} +F_{\textrm{bz},2} \right)}-T_{h,2} -T_{h,1} -l_c \,\cos \left(\theta_b \right)\,{\left(F_{\textrm{bx},1} -F_{\textrm{bx},2} \right)}$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+
+
+
+
+syms theta_dot_w_1(t) theta_dot_w_2(t) l_1 l_2 theta_l_1(t) theta_l_2(t) theta_dot_l_1 theta_dot_l_2 theta_w_1(t) theta_w_2(t) phi(t) phi_dot x_b
+x = (theta_w_1+theta_w_2)*R_w/2
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+x(t) = 
+
+\hskip1em $\displaystyle \frac{R_w \,{\left(\theta_{w,1} \left(t\right)+\theta_{w,2} \left(t\right)\right)}}{2}$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+x_l_1 = R_w * theta_w_1 + l_w_1 * sin(theta_l_1)
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+x\_l\_1(t) = 
+
+\hskip1em $\displaystyle l_{w,1} \,\sin \left(\theta_{l,1} \left(t\right)\right)+R_w \,\theta_{w,1} \left(t\right)$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+z_l_1 = R_w + l_w_1*cos(theta_l_1)
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+z\_l\_1(t) = 
+
+\hskip1em $\displaystyle R_w +l_{w,1} \,\cos \left(\theta_{l,1} \left(t\right)\right)$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+x_l_2 = R_w * theta_w_2 + l_w_2 * sin(theta_l_2)
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+x\_l\_2(t) = 
+
+\hskip1em $\displaystyle l_{w,2} \,\sin \left(\theta_{l,2} \left(t\right)\right)+R_w \,\theta_{w,2} \left(t\right)$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+z_l_2 = R_w + l_w_2*cos(theta_l_2)
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+z\_l\_2(t) = 
+
+\hskip1em $\displaystyle R_w +l_{w,2} \,\cos \left(\theta_{l,2} \left(t\right)\right)$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+eq_x_b_1 = x_b == R_w*theta_w_1 - R_l*phi - l_1*sin(theta_l_1)
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+eq\_x\_b\_1(t) = 
+
+\hskip1em $\displaystyle x_b =R_w \,\theta_{w,1} \left(t\right)-R_l \,\phi \left(t\right)-l_1 \,\sin \left(\theta_{l,1} \left(t\right)\right)$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+eq_x_b_2 = x_b == R_w*theta_w_2 + R_l*phi - l_2*sin(theta_l_2)
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+eq\_x\_b\_2(t) = 
+
+\hskip1em $\displaystyle x_b =R_l \,\phi \left(t\right)-l_2 \,\sin \left(\theta_{l,2} \left(t\right)\right)+R_w \,\theta_{w,2} \left(t\right)$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+
+x_b = x - l_1*sin(theta_l_1)/2 - l_2*sin(theta_l_2)/2;
+phi = simplify((R_w*(theta_w_2-theta_w_1)+ l_1*sin(theta_l_1) - l_2*sin(theta_l_2))/(2*R_l));
+z_b = (l_1*cos(theta_l_1) + l_2*cos(theta_l_2));
+
+x_ddot = diff(x, t, 2);
+x_ddot_l_1 = diff(x_l_1, t, 2);
+z_ddot_l_1 = diff(z_l_1, t, 2);
+x_ddot_l_2 = diff(x_l_2, t, 2);
+z_ddot_l_2 = diff(z_l_2, t, 2);
+phi_ddot = diff(phi, t, 2);
+x_ddot_b = diff(x_b, t, 2);
+z_ddot_b = diff(z_b, t, 2);
+
+subs_result = subs([x_ddot; x_ddot_l_1; z_ddot_l_1; x_ddot_l_2; z_ddot_l_2; phi_ddot; x_ddot_b; z_ddot_b], [ ...
+    diff(theta_l_1, t, 2) ...
+    diff(theta_l_2, t, 2) ...
+    diff(theta_l_1, t), ...
+    diff(theta_l_2, t), ...
+    diff(theta_w_1, t, 2) ...
+    diff(theta_w_2, t, 2) ...
+    diff(phi, t)], ...
+    [theta_ddot_l_1 ...
+    theta_ddot_l_2 ...
+    theta_dot_l_1 ...
+    theta_dot_l_2 ...
+    theta_ddot_w_1 ...
+    theta_ddot_w_2 ...
+    phi_dot]);
+
+time_dependent = [theta_dot_w_1(t) theta_dot_w_2(t) l_1 l_2 theta_l_1(t) theta_l_2(t) theta_dot_l_1 theta_dot_l_2 theta_w_1(t) theta_w_2(t) phi(t)];
+syms theta_dot_w_1 theta_dot_w_2 l_1 l_2 theta_l_1 theta_l_2 theta_dot_l_1 theta_dot_l_2 theta_w_1 theta_w_2 phi phi_dot
+time_independent = [theta_dot_w_1 theta_dot_w_2 l_1 l_2 theta_l_1 theta_l_2 theta_dot_l_1 theta_dot_l_2 theta_w_1 theta_w_2 phi];
+subs_result = subs(subs_result, time_dependent, time_independent);
+syms x_ddot x_ddot_l_1 z_ddot_l_1 x_ddot_l_2 z_ddot_l_2 phi_ddot x_ddot_b z_ddot_b
+subs_result = subs_result(t);
+eq16 = x_ddot == (subs_result(1)) 
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+eq16 = 
+
+\hskip1em $\displaystyle \ddot{x} =\frac{R_w \,{\left({\ddot{\theta} }_{w,1} +{\ddot{\theta} }_{w,2} \right)}}{2}$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+eq17 = x_ddot_l_1 == (subs_result(2))
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+eq17 = 
+
+\hskip1em $\displaystyle {\ddot{x} }_{l,1} =-l_{w,1} \,\sin \left(\theta_{l,1} \right)\,{{\dot{\theta} }_{l,1} }^2 +R_w \,{\ddot{\theta} }_{w,1} +l_{w,1} \,{\ddot{\theta} }_{l,1} \,\cos \left(\theta_{l,1} \right)$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+eq18 = z_ddot_l_1 == (subs_result(3))
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+eq18 = 
+
+\hskip1em $\displaystyle {\ddot{z} }_{l,1} =-l_{w,1} \,\cos \left(\theta_{l,1} \right)\,{{\dot{\theta} }_{l,1} }^2 -l_{w,1} \,{\ddot{\theta} }_{l,1} \,\sin \left(\theta_{l,1} \right)$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+eq19 = x_ddot_l_2 == (subs_result(4))
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+eq19 = 
+
+\hskip1em $\displaystyle {\ddot{x} }_{l,2} =-l_{w,2} \,\sin \left(\theta_{l,2} \right)\,{{\dot{\theta} }_{l,2} }^2 +R_w \,{\ddot{\theta} }_{w,2} +l_{w,2} \,{\ddot{\theta} }_{l,2} \,\cos \left(\theta_{l,2} \right)$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+eq20 = z_ddot_l_2 == (subs_result(5))
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+eq20 = 
+
+\hskip1em $\displaystyle {\ddot{z} }_{l,2} =-l_{w,2} \,\cos \left(\theta_{l,2} \right)\,{{\dot{\theta} }_{l,2} }^2 -l_{w,2} \,{\ddot{\theta} }_{l,2} \,\sin \left(\theta_{l,2} \right)$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+eq21 = phi_ddot == (subs_result(6))
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+eq21 = 
+
+\hskip1em $\displaystyle \ddot{\phi} =-\frac{l_1 \,\sin \left(\theta_{l,1} \right)\,{{\dot{\theta} }_{l,1} }^2 -l_2 \,\sin \left(\theta_{l,2} \right)\,{{\dot{\theta} }_{l,2} }^2 +R_w \,{\left({\ddot{\theta} }_{w,1} -{\ddot{\theta} }_{w,2} \right)}-l_1 \,{\ddot{\theta} }_{l,1} \,\cos \left(\theta_{l,1} \right)+l_2 \,{\ddot{\theta} }_{l,2} \,\cos \left(\theta_{l,2} \right)}{2\,R_l }$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+eq22 = x_ddot_b == (subs_result(7))
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+eq22 = 
+
+\hskip1em $\displaystyle {\ddot{x} }_b =\frac{l_1 \,\sin \left(\theta_{l,1} \right)\,{{\dot{\theta} }_{l,1} }^2 }{2}+\frac{l_2 \,\sin \left(\theta_{l,2} \right)\,{{\dot{\theta} }_{l,2} }^2 }{2}+\frac{R_w \,{\left({\ddot{\theta} }_{w,1} +{\ddot{\theta} }_{w,2} \right)}}{2}-\frac{l_1 \,{\ddot{\theta} }_{l,1} \,\cos \left(\theta_{l,1} \right)}{2}-\frac{l_2 \,{\ddot{\theta} }_{l,2} \,\cos \left(\theta_{l,2} \right)}{2}$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+eq23 = z_ddot_b == (subs_result(8))
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+eq23 = 
+
+\hskip1em $\displaystyle {\ddot{z} }_b =-l_1 \,\cos \left(\theta_{l,1} \right)\,{{\dot{\theta} }_{l,1} }^2 -l_2 \,\cos \left(\theta_{l,2} \right)\,{{\dot{\theta} }_{l,2} }^2 -l_1 \,{\ddot{\theta} }_{l,1} \,\sin \left(\theta_{l,1} \right)-l_2 \,{\ddot{\theta} }_{l,2} \,\sin \left(\theta_{l,2} \right)$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+
+% Combine all equations into a system
+eqs = [eq1 eq2 eq3 eq4 eq5 eq6 eq7 eq8 eq9 eq10 eq11 eq12 eq13 eq14 eq15];
+eqs=subs(eqs,x_ddot, subs_result(1));
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+eqs = 
+
+\hskip1em $\displaystyle \left(\begin{array}{ccccccccccccccc}
+I_z \,\ddot{\phi} =-R_l \,{\left(f_1 -f_2 \right)} & F_{\textrm{bz},1} =F_{\textrm{bz},2}  & R_w \,m_w \,{\ddot{\theta} }_{w,1} =f_1 -F_{\textrm{wx},1}  & I_w \,{\ddot{\theta} }_{w,1} =T_{w,1} -R_w \,f_1  & m_l \,{\ddot{x} }_{l,1} =F_{\textrm{wx},1} -F_{\textrm{bx},1}  & m_l \,{\ddot{z} }_{l,1} =F_{\textrm{wz},1} -F_{\textrm{bz},1} -g\,m_l  & I_{l,1} \,{\ddot{\theta} }_{l,1} =T_{h,1} -T_{w,1} -\cos \left(\theta_{l,1} \right)\,{\left(F_{\textrm{bx},1} \,l_{b,1} -F_{\textrm{wx},1} \,l_{w,1} \right)}+\sin \left(\theta_{l,1} \right)\,{\left(F_{\textrm{bz},1} \,l_{b,1} +F_{\textrm{wz},1} \,l_{w,1} \right)} & R_w \,m_w \,{\ddot{\theta} }_{w,2} =f_2 -F_{\textrm{wx},2}  & I_w \,{\ddot{\theta} }_{w,2} =T_{w,2} -R_w \,f_2  & m_l \,{\ddot{x} }_{l,2} =F_{\textrm{wx},2} -F_{\textrm{bx},2}  & m_l \,{\ddot{z} }_{l,2} =F_{\textrm{wz},2} -F_{\textrm{bz},2} -g\,m_l  & I_{l,1} \,{\ddot{\theta} }_{l,2} =T_{h,2} -T_{w,2} -\cos \left(\theta_{l,2} \right)\,{\left(F_{\textrm{bx},2} \,l_{b,2} -F_{\textrm{wx},2} \,l_{w,2} \right)}+\sin \left(\theta_{l,2} \right)\,{\left(F_{\textrm{bz},2} \,l_{b,2} +F_{\textrm{wz},2} \,l_{w,2} \right)} & m_b \,{\ddot{x} }_b =F_{\textrm{bx},1} +F_{\textrm{bx},2}  & m_b \,{\ddot{z} }_b =F_{\textrm{bz},1} +F_{\textrm{bz},2} -g\,m_b  & I_b \,{\ddot{\theta} }_b =l_c \,\sin \left(\theta_b \right)\,{\left(F_{\textrm{bz},1} +F_{\textrm{bz},2} \right)}-T_{h,2} -T_{h,1} -l_c \,\cos \left(\theta_b \right)\,{\left(F_{\textrm{bx},1} -F_{\textrm{bx},2} \right)}
+\end{array}\right)$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+
+\end{matlabcode}
+
+\end{document}
